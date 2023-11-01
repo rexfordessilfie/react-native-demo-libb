@@ -1,5 +1,5 @@
 {
-  "name": "react-native-demo-lib",
+  "name": "@rexfordessilfie/react-native-demo-lib",
   "version": "0.1.0",
   "description": "A demo react-native library",
   "main": "lib/commonjs/index",
