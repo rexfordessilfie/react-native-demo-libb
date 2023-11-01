@@ -1,17 +1,17 @@
-# react-native-demo-lib
+# react-native-demo-libb
 
 A demo react-native library
 
 ## Installation
 
 ```sh
-npm install react-native-demo-lib
+npm install react-native-demo-libb
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-demo-lib';
+import { multiply } from 'react-native-demo-libb';
 
 // ...
 

@@ -14667,9 +14667,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-demo-lib-example@workspace:example":
+"react-native-demo-libb-example@workspace:example":
   version: 0.0.0-use.local
-  resolution: "react-native-demo-lib-example@workspace:example"
+  resolution: "react-native-demo-libb-example@workspace:example"
   dependencies:
     "@babel/core": ^7.20.0
     "@expo/webpack-config": ^18.0.1

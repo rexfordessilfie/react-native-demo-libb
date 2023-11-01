@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-demo-lib-example",
+    "example": "yarn workspace react-native-demo-libb-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -39,13 +39,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/rexfordessilfie/react-native-demo-lib",
+  "repository": "https://github.com/rexfordessilfie/react-native-demo-libb",
   "author": "Rexford Essilfie <rexfordessilfie09@gmail.com> (https://github.com/rexfordessilfie)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rexfordessilfie/react-native-demo-lib/issues"
+    "url": "https://github.com/rexfordessilfie/react-native-demo-libb/issues"
   },
-  "homepage": "https://github.com/rexfordessilfie/react-native-demo-lib#readme",
+  "homepage": "https://github.com/rexfordessilfie/react-native-demo-libb#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
