@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-demo-lib": ["./src/index"]
+      "react-native-demo-libb": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
