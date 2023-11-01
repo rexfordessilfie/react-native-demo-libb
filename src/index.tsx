@@ -20,7 +20,22 @@ const { UIManager } = NativeModules;
 UIManager.setLayoutAnimationEnabledExperimental &&
   UIManager.setLayoutAnimationEnabledExperimental(true);
 
-export function Multiplier() {
+type MultiplierProps = {
+  colors?: {
+    font?: string;
+    placeholder?: string;
+    border?: string;
+    background?: string;
+  };
+  onError?: (error: string) => void;
+  onResult?: (result: number) => void;
+};
+
+export function Multiplier({
+  colors = {},
+  onError,
+  onResult,
+}: MultiplierProps) {
   const [a, setA] = useState<string>();
   const [b, setB] = useState<string>();
   const [error, setErrorMessage] = useState<string>();
@@ -42,9 +57,13 @@ export function Multiplier() {
         });
 
         setResult(_result);
+        onResult?.(_result);
       })
-      .catch((e: Error) => setErrorMessage(e.message || 'Unknown error!'));
-  }, [a, b]);
+      .catch((e: Error) => {
+        setErrorMessage(e.message || 'Unknown error!');
+        onError?.(e.message || 'Unknown error!');
+      });
+  }, [a, b, onError, onResult]);
 
   const textLength =
     (a?.length || 1) + (b?.length || 1) + (result?.toString().length || 1) + 2;
@@ -53,47 +72,66 @@ export function Multiplier() {
   const operatorFontSize = fontSize * 0.5;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]}>
       <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
+        style={[styles.container, { backgroundColor: colors.background }]}
+        contentContainerStyle={[
+          styles.contentContainer,
+          { backgroundColor: colors.background },
+        ]}
       >
         <View style={styles.content}>
           <View>
-            {error && <Text style={styles.error}>Error: {error}</Text>}
+            {error && <Text style={[styles.error]}>Error: {error}</Text>}
           </View>
           <View style={[styles.inputContainer]}>
             <TextInput
+              placeholderTextColor={colors.placeholder}
               keyboardType="number-pad"
-              style={[styles.input, { fontSize }]}
+              style={[
+                styles.input,
+                { fontSize, color: colors.font, borderColor: colors.border },
+              ]}
               value={a}
               placeholder="0"
               onChangeText={setA}
             />
 
-            <Text style={[{ fontSize: operatorFontSize }]}>*</Text>
+            <Text style={[{ fontSize: operatorFontSize, color: colors.font }]}>
+              *
+            </Text>
 
             <TextInput
+              placeholderTextColor={colors.placeholder}
               keyboardType="number-pad"
-              style={[styles.input, { fontSize }]}
+              style={[
+                styles.input,
+                { fontSize, color: colors.font, borderColor: colors.border },
+              ]}
               value={b}
               placeholder="0"
               onChangeText={setB}
             />
 
-            <Text style={[{ fontSize: operatorFontSize }]}>=</Text>
-            <Text style={[{ fontSize }]}>{result}</Text>
+            <Text style={[{ fontSize: operatorFontSize, color: colors.font }]}>
+              =
+            </Text>
+            <Text style={[{ fontSize, color: colors.font }]}>{result}</Text>
           </View>
         </View>
-        <Text style={styles.title}>RN Demo Libb</Text>
+        <Text style={[styles.title, { color: colors.font }]}>RN Demo Libb</Text>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safe: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
   container: {
-    maxWidth: '100%',
     flex: 1,
   },
 
@@ -117,7 +155,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 8,
+    gap: 4,
+    marginHorizontal: 8,
   },
 
   input: {
