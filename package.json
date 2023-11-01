@@ -1,6 +1,6 @@
 {
   "name": "react-native-demo-libb",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A demo react-native library",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
